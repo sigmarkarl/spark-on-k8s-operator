@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+    name: spark
+
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+    name: spark-autoscaler-role
+rules:
+    - apiGroups: [""]
+      resources: ["pods", "configmaps", "services"]
+      verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
+    - apiGroups: [ "" ]
+      resources: [ "persistentvolumeclaims" ]
+      verbs: [ "get", "list", "watch" ]
+    - apiGroups: ["networking.k8s.io"]
+      resources: ["ingresses"]
+      verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
+    - apiGroups: ["sparkoperator.k8s.io"]
+      resources: ["sparkapplications"]
+      verbs: ["get", "list", "watch", "create", "update", "delete", "patch"]
+
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+    name: spark-autoscaler-binding
+subjects:
+    - kind: ServiceAccount
+      name: spark
+        #apiGroup: rbac.authorization.k8s.io
+roleRef:
+    kind: Role
+    name: spark-autoscaler-role # this must match the name of the Role or ClusterRole you wish to bind to
+    apiGroup: rbac.authorization.k8s.io
