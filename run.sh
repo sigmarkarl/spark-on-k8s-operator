@@ -1,0 +1,1 @@
+SPARK_HOME=opt/homebrew/Cellar/apache-spark/3.3.1/libexec KUBERNETES_SERVICE_HOST=localhost KUBERNETES_SERVICE_PORT=8001 ./spark-operator

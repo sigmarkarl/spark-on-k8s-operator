@@ -59,7 +59,7 @@ spec:
   #     spark.stop()
   #mainApplicationFile: local:///opt/spark/klobb.py
   # mainApplicationFile: local:///opt/spark/examples/src/main/python/pi.py
-  mainApplicationFile: /Users/sigmar/spark-on-k8s-operator/pi.py
+  mainApplicationFile: /Users/sigmar/Documents/GitHub/spark-on-k8s-operator/pi.py
   #deps:
   #  packages:
       #- org.apache.poi:poi:5.2.3
